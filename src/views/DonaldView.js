@@ -8,7 +8,10 @@ const DonaldView = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestApiData())
+        const requestParams = {
+            screen_name: 'realDonaldTrump'
+        }
+        dispatch(requestApiData(requestParams))
     }, [dispatch])
 
     if (!apiData.tweets) return <div>No tweets</div>
@@ -16,7 +19,7 @@ const DonaldView = () => {
     return (
         <div>
             <h1 className="title">
-                {apiData.title}
+                {apiData.screen_name}
             </h1>
             {apiData.tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet} />)}
         </div>
